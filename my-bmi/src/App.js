@@ -10,11 +10,11 @@ function App() {
   const [bmiType, setbmiType] = useState(" ")
   const [wtpe, setwtpe] = useState({ type:'',msg:""})
   const [bmiList, setbmiList] = useState({
-    underweight: { low: '', high: '' },
-    normal: { low: '', high: '' },
-    overweight: { low: '', high: '' },
-    obesityOne: { low: '', high: '' },
-    obesityTwo: { low: '', high: '' }
+    underweight:{ id : 1 , label: "Under Weight",  range:"0 - 18",     low: '', high: '' },
+    normal:     { id : 2 , label: "Normal Weight", range:"18.1 - 27.9",low: '', high: '' },
+    overweight: { id : 3 , label: "Over Weight",   range:"28 - 31.9",  low: '', high: '' },
+    obesityOne: { id : 4 , label: "Obesity One",   range:"32 - 37.9",  low: '', high: '' },
+    obesityTwo: { id : 5 , label: "Obesity Two",   range:"38-",        low: '', high: '' }
   });
   const getFormData = (h, w) => {
     h = h / 100;
@@ -22,11 +22,13 @@ function App() {
     setbmi(b)
     setbmiType(calcBmiType(b))
     setbmiList({
-      underweight: { low: calcWeight(18, h) },
-      normal: { low: calcWeight(18.1, h), high: calcWeight(27.9, h) },
-      overweight: { low: calcWeight(28, h), high: calcWeight(31.9, h) },
-      obesityOne: { low: calcWeight(32, h), high: calcWeight(37.9, h) },
-      obesityTwo: { high: calcWeight(38, h) }
+    underweight:{ "id":1, label: "Under Weight",range:"0 - 18",       low: calcWeight(18, h)  , high: '' },
+    normal:     { "id":2, label: "Normal Weight",range:"18.1 - 27.9", low: calcWeight(18.1, h), high: calcWeight(27.9, h)},
+    overweight: { "id":3, label: "Over Weight",range:"28 - 31.9",     low: calcWeight(28, h)  , high: calcWeight(31.9, h)},
+    obesityOne: { "id":4, label: "Obesity One",range:"32 - 37.9",     low: calcWeight(32, h)  , high: calcWeight(37.9, h)},
+    obesityTwo: { "id":5, label: "Obesity Two",range:"38-",           low: ''                 , high: calcWeight(38, h)  }
+
+
     });
     setwtpe(calWtType(b,w));
   }
